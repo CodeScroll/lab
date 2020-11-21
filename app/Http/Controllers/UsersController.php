@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 class UsersController extends Controller
 {
     function index(){
-        return 'users';
+        $users = [
+            'frank',
+            'brock',
+            'jameson',
+            'jack'
+        ];
+
+        return response()->json([
+            'users' => $users,
+            'count' => count($users)
+        ]);
     }
 }
