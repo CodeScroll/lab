@@ -52,6 +52,10 @@ $rules = [
     'email' => [
         'name' => 'email',
         'required' => 1
+    ],
+    'phone' => [
+        'name' => 'phone',
+        'required' => 1
     ]
 ];
 
@@ -61,10 +65,6 @@ $messages = [
 ];
 
 $validate = $test1->validate($data, $rules, $messages);
-
-echo '<pre>';
-print_r($validate);
-echo '</pre>';
 
 if(!$validate['status']){
     echo 'Fields Missing';
