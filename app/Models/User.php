@@ -43,6 +43,6 @@ class User extends Authenticatable
 
     public function skills()
     {
-        return $this->hasMany(Skill::class);
+        return $this->morphToMany(Skill::class, 'id');
     }
 }
