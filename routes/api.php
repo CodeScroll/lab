@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\SkillsController;
+use App\Http\Controllers\UsersSkillsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::get('/users', 'App\Http\Controllers\UsersController@index');
-Route::get('/user/{id}/skills', 'App\Http\Controllers\UsersSkillsController@index');
-Route::get('/skills', 'App\Http\Controllers\SkillsController@index');
+Route::apiResource('users', UsersController::class);
+Route::apiResource('users-skills', UsersSkillsController::class, ['only' => ['index']]);
+Route::apiResource('skills', SkillsController::class);
