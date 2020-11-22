@@ -14,3 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/users', 'App\Http\Controllers\UsersController@index');
+Route::get('/skills', 'App\Http\Controllers\SkillsController@index');
