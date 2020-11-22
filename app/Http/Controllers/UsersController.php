@@ -10,7 +10,7 @@ class UsersController extends Controller
     function index(){
         $users = User::all();
         foreach($users as $user){
-            dump($users->skills());
+            dump($user->skills);
         }
         return response()->json([
             'users' => $users,
