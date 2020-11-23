@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Skill;
 use Illuminate\Http\Request;
+use App\Http\Requests\SkillsStoreRequest;
 
 class SkillsController extends Controller
 {
@@ -29,7 +30,7 @@ class SkillsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SkillsStoreRequest $request)
     {
         $skill = Skill::create($request->only('title'));
         return response()->json(compact('skill'), 201);
