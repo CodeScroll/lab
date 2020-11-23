@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SkillsController;
+use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\UsersSkillsController;
 use App\Http\Controllers\UsersVacationsController;
 
@@ -19,10 +20,15 @@ use App\Http\Controllers\UsersVacationsController;
 */
 Route::apiResource('users', UsersController::class);
 Route::apiResource('skills', SkillsController::class);
+Route::apiResource('departments', DepartmentsController::class);
 
 Route::apiResource('users-skills', UsersSkillsController::class, ['only' => ['index']]);
 Route::post('/users/{users}/skills', 'App\Http\Controllers\UsersSkillsController@store')->name('users.skills.store');
 
 Route::get('/users/{user}/vacations', 'App\Http\Controllers\UsersVacationsController@index')->name('users.vacations.index');
+
 Route::post('/users/{users}/vacations', 'App\Http\Controllers\UsersVacationsController@store')->name('users.vacations.store');
 Route::put('/users/{user}/vacation/{vacation}', 'App\Http\Controllers\UsersVacationsController@update')->name('users.vacations.update');
+
+Route::post('/department/{department}/{users}', 'App\Http\Controllers\DepartmentsController@store')->name('department.users.store');
+Route::delete('/department/{department}/{users}', 'App\Http\Controllers\DepartmentsController@delete')->name('department.users.delete');
