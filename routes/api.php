@@ -17,5 +17,7 @@ use App\Http\Controllers\UsersSkillsController;
 |
 */
 Route::apiResource('users', UsersController::class);
-Route::apiResource('users-skills', UsersSkillsController::class, ['only' => ['index']]);
 Route::apiResource('skills', SkillsController::class);
+
+Route::apiResource('users-skills', UsersSkillsController::class, ['only' => ['index']]);
+Route::post('/users/{users}/skills', 'App\Http\Controllers\UsersSkillsController@store')->name('users.skills.store');
