@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Skill;
+use App\Models\Vacation;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -46,5 +47,10 @@ class User extends Authenticatable
     public function skills()
     {
         return $this->belongsToMany(Skill::class, 'users_skills');
+    }
+
+    public function vacations()
+    {
+        return $this->hasMany(Vacation::class);
     }
 }
