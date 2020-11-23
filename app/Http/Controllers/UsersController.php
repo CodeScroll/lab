@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpateRequest;
 
 class UsersController extends Controller
 {
@@ -50,9 +51,11 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpateRequest $request, User $user)
     {
-        //
+
+        $user->update($request->only('first_name', 'last_name', 'email'));
+        return response()->json(null, 204);
     }
 
     /**
