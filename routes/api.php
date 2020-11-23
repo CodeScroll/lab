@@ -30,5 +30,5 @@ Route::get('/users/{user}/vacations', 'App\Http\Controllers\UsersVacationsContro
 Route::post('/users/{users}/vacations', 'App\Http\Controllers\UsersVacationsController@store')->name('users.vacations.store');
 Route::put('/users/{user}/vacation/{vacation}', 'App\Http\Controllers\UsersVacationsController@update')->name('users.vacations.update');
 
-Route::post('/department/{department}/{users}', 'App\Http\Controllers\DepartmentsController@store')->name('department.users.store');
-Route::delete('/department/{department}/{users}', 'App\Http\Controllers\DepartmentsController@delete')->name('department.users.delete');
+Route::post('/department/{department}/user/{user}', 'App\Http\Controllers\DepartmentsUsersController@store')->name('department.users.store');
+Route::delete('/department/{department}/user/{user}', 'App\Http\Controllers\DepartmentsUsersController@delete')->name('department.users.delete');
