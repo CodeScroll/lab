@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->create();
         \App\Models\Skill::factory(10)->create();
         $this->call(UserSkillSeeder::class);
+        $this->call(VacationSeeder::class);
     }
 }
