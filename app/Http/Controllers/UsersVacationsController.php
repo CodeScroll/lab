@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Vacation;
 use Illuminate\Http\Request;
 
 class UsersVacationsController extends Controller
@@ -11,9 +13,12 @@ class UsersVacationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        //
+        return response()->json([
+            'vacations' => $user->vacations,
+            'status' => 201
+        ]);
     }
 
     /**
@@ -22,9 +27,16 @@ class UsersVacationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($user, Request $request)
     {
-        //
+        $user = User::find($user);
+        $vacations = Vacation::whereIn('id',json_decode($request->vacations))->get();
+        $user->vacations()->attach($vacations);
+
+        return response()->json([
+            'vacations' => $user->vacations,
+            'status' => 201
+        ]);
     }
 
     /**

@@ -19,7 +19,9 @@ use App\Http\Controllers\UsersVacationsController;
 */
 Route::apiResource('users', UsersController::class);
 Route::apiResource('skills', SkillsController::class);
-Route::apiResource('vacation', UsersVacationsController::class);
 
 Route::apiResource('users-skills', UsersSkillsController::class, ['only' => ['index']]);
 Route::post('/users/{users}/skills', 'App\Http\Controllers\UsersSkillsController@store')->name('users.skills.store');
+
+Route::get('/users/{user}/vacations', 'App\Http\Controllers\UsersVacationsController@index')->name('users.vacations.index');
+Route::post('/users/{users}/vacations', 'App\Http\Controllers\UsersVacationsController@store')->name('users.vacations.store');
