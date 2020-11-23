@@ -14,7 +14,7 @@ class CrateDepartmentUsersTable extends Migration
     public function up()
     {
         Schema::create('department_users', function (Blueprint $table) {
-
+            $table->id();
             $table->bigInteger('department_id')->unsigned();
             $table->foreign('department_id')->references('id')->on('departments');
 

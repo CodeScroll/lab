@@ -16,7 +16,10 @@ class DepartmentsUsersController extends Controller
 
     }
 
-    function delete(){
-        
+    function delete($department, $user){
+        $user = User::find($user);
+        $department = Department::find($department);
+        $department->deleteUser($user->id);
+        return response()->json(null, 204);
     }
 }
