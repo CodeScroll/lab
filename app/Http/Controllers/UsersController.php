@@ -27,7 +27,7 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStoreRequest $request)
+    public function store(UsersStoreRequest $request)
     {
         $user = User::create($request->only('first_name', 'last_name', 'email', 'password'));
         return response()->json(compact('user'), 201);
@@ -51,7 +51,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpateRequest $request, User $user)
+    public function update(UsersUpateRequest $request, User $user)
     {
 
         $user->update($request->only('first_name', 'last_name', 'email'));
