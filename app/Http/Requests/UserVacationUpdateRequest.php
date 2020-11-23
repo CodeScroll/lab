@@ -13,7 +13,7 @@ class UserVacationUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,6 @@ class UserVacationUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'vacation_id' => 'required|exists:vacations,id',
             'from' => 'required|date_format:Y-m-d H:i:s',
             'to' => 'required|date_format:Y-m-d H:i:s',
         ];

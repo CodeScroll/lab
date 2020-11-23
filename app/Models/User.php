@@ -51,6 +51,6 @@ class User extends Authenticatable
 
     public function vacations()
     {
-        return $this->belongsToMany(Vacation::class, 'users_vacations');
+        return $this->hasMany(Vacation::class);
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Vacation;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserVacationStoreRequest;
+use App\Http\Requests\UserVacationUpdateRequest;
 
 class UsersVacationsController extends Controller
 {
@@ -27,11 +29,14 @@ class UsersVacationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($user, Request $request)
-    {
+    public function store($user, UserVacationStoreRequest $request)
+    {   
         $user = User::find($user);
-        $vacations = Vacation::whereIn('id',json_decode($request->vacations))->get();
-        $user->vacations()->attach($vacations);
+        $vacation = new Vacation();
+        $vacation->from = $request->from;
+        $vacation->to = $request->to;
+        $vacation->user_id = $user->id;
+        $vacation->save();
 
         return response()->json([
             'vacations' => $user->vacations,
@@ -57,9 +62,17 @@ class UsersVacationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($user, $vacation, UserVacationUpdateRequest $request)
     {
-        //
+        $user = User::find($user);
+        $vacation = Vacation::find($vacation);
+        if($user->vacations->contains($vacation)){
+            $vacation->from = $request->from;
+            $vacation->to = $request->to;
+            $vacation->save();
+        }
+
+        return response()->json(null, 204);
     }
 
     /**

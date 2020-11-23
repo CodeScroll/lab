@@ -25,3 +25,4 @@ Route::post('/users/{users}/skills', 'App\Http\Controllers\UsersSkillsController
 
 Route::get('/users/{user}/vacations', 'App\Http\Controllers\UsersVacationsController@index')->name('users.vacations.index');
 Route::post('/users/{users}/vacations', 'App\Http\Controllers\UsersVacationsController@store')->name('users.vacations.store');
+Route::put('/users/{user}/vacation/{vacation}', 'App\Http\Controllers\UsersVacationsController@update')->name('users.vacations.update');
