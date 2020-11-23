@@ -23,7 +23,6 @@ class VacationFactory extends Factory
     public function definition()
     {  
         return [
-            'user_id' => User::all()->random()->id,
             'from' => $this->faker->dateTimeBetween('-1 years'),
             'to' => $this->faker->dateTimeBetween('-1 years'),
         ];
