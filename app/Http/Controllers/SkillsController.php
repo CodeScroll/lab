@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 use App\Http\Requests\SkillsStoreRequest;
+use App\Http\Requests\SkillsUpdateRequest;
 
 class SkillsController extends Controller
 {
@@ -42,9 +43,9 @@ class SkillsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Skill $skill)
     {
-        //
+        return response()->json(compact('skill'));
     }
 
     /**
@@ -54,9 +55,10 @@ class SkillsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SkillsUpdateRequest $request, Skill $skill)
     {
-        //
+        $skill->update($request->only('title'));
+        return response()->json(null, 204);
     }
 
     /**
