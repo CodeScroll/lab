@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Skill;
 use Illuminate\Http\Request;
+use App\Http\Requests\UsersSkillsStoreRequest;
 
 class UsersSkillsController extends Controller
 {
@@ -17,9 +18,8 @@ class UsersSkillsController extends Controller
         return response()->json(compact('users','count'));
     }
 
-    function store($user, Request $request){
+    function store($user, UsersSkillsStoreRequest $request){
         $user = User::find($user);
-        //$skills = Skill::whereIn('id',json_decode($request->skills))->pluck('id')->toArray();
         $skills = Skill::whereIn('id',json_decode($request->skills))->get();
         $user->skills()->attach($skills);
         return response()->json(compact('skills'), 201);
