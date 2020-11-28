@@ -21,7 +21,8 @@ class VacationFactory extends Factory
      * @return array
      */
     public function definition()
-    {  
+    {
+        $user =  \App\Models\User::factory(1)->create();
         return [
             'user_id' => User::all()->random()->id,
             'from' => $this->faker->dateTimeBetween('-1 years'),

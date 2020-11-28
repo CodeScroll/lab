@@ -30,7 +30,7 @@ class UsersVacationsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store($user, UserVacationStoreRequest $request)
-    {   
+    {
         $user = User::find($user);
         $vacation = new Vacation();
         $vacation->from = $request->from;
