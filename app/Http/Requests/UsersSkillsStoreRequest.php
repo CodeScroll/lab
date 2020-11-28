@@ -24,11 +24,13 @@ class UsersSkillsStoreRequest extends FormRequest
      */
     public function rules()
     {
-        $skillsRequested = json_decode($this->skills);
-        $skillsRequestedCount = count($skillsRequested);
-        $skillsCount = Skill::whereIn('id',$skillsRequested)->count();
-        if($skillsCount != $skillsRequestedCount){
-            abort(404);
+        if(isset($this->skills)){
+            $skillsRequested = json_decode($this->skills);
+            $skillsRequestedCount = count($skillsRequested);
+            $skillsCount = Skill::whereIn('id',$skillsRequested)->count();
+            if($skillsCount != $skillsRequestedCount){
+                abort(404);
+            }
         }
 
         return [
