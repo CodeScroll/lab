@@ -28,7 +28,7 @@ class UsersSkillsStoreRequest extends FormRequest
         $skillsRequestedCount = count($skillsRequested);
         $skillsCount = Skill::whereIn('id',$skillsRequested)->count();
         if($skillsCount != $skillsRequestedCount){
-            return false;
+            abort(404);
         }
 
         return [
